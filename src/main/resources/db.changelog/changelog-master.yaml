@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: v_1_0_0
+      author: nino
+      comment: "initialize a base db structure"
+      sqlFile:
+        encoding: utf8
+        relativeToChangeLogFile: true
+        stripComments: true
+        path: "v_1_0_0/main-changelog.sql"
