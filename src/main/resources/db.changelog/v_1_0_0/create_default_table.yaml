@@ -34,9 +34,11 @@ databaseChangeLog:
               - column:
                   name: updated_at
                   type: timestamp
+                  defaultValueComputed: current_timestamp
               - column:
                   name: last_activity
                   type: timestamp
+                  defaultValueComputed: current_timestamp
   - changeSet:
       id: create-tasks-tables
       author: nino
@@ -76,9 +78,11 @@ databaseChangeLog:
               - column:
                   name: updated_at
                   type: timestamp
+                  defaultValueComputed: current_timestamp
               - column:
                   name: last_edited_at
                   type: timestamp
+                  defaultValueComputed: current_timestamp
               - column:
                   name: user_id
                   type: bigint

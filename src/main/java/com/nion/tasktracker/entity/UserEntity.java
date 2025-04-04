@@ -14,14 +14,16 @@ import java.time.LocalDateTime;
 public record UserEntity(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "user_id")
         long userId,
+        @Column(name = "user_name")
         String userName,
         String email,
         @Enumerated(EnumType.STRING)
         UserRole role,
-        @CreatedDate
+        @CreatedDate @Column(name = "created_at") @Temporal(TemporalType.TIMESTAMP)
         LocalDateTime createdAt,
-        @LastModifiedBy
+        @LastModifiedBy @Column(name = "updated_at") @Temporal(TemporalType.TIMESTAMP)
         LocalDateTime updatedAt,
+        @Column(name = "last_activity") @Temporal(TemporalType.TIMESTAMP)
         LocalDateTime lastActivity
 ) {
 }
