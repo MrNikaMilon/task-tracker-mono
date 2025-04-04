@@ -28,7 +28,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 	implementation("org.springframework.boot:spring-boot-starter-hateoas")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-	implementation("org.liquibase:liquibase-core")
+	implementation("org.liquibase:liquibase-core:4.29.2")
 	implementation("org.mapstruct:mapstruct:1.6.3")
 	testImplementation("org.testcontainers:junit-jupiter")
 	testImplementation("org.springframework.boot:spring-boot-testcontainers")
