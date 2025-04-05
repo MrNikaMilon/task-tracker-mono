@@ -11,13 +11,14 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name="users")
 @EntityListeners(AuditingEntityListener.class)
-public record UserEntity(
+public record TaskUserEntity(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "user_id")
-        long userId,
-        @Column(name = "user_name")
+        Long userId,
+        @Column(name = "user_name", nullable = false)
         String userName,
+        @Column(nullable = false)
         String email,
-        @Enumerated(EnumType.STRING)
+        @Enumerated(EnumType.STRING) @Column(nullable = false)
         UserRole role,
         @CreatedDate @Column(name = "created_at") @Temporal(TemporalType.TIMESTAMP)
         LocalDateTime createdAt,
