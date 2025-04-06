@@ -5,6 +5,7 @@ import org.mapstruct.MappingConstants;
 
 @Mapper(
         componentModel = MappingConstants.ComponentModel.SPRING
-)public interface ITaskMapper {
+)
+public interface ITaskMapper {
 
 }

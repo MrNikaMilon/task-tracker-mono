@@ -1,4 +1,4 @@
-package com.nion.tasktracker.exception;
+package com.nion.tasktracker.handler.exception;
 
 public class TaskNotFoundException extends RuntimeException {
     public TaskNotFoundException(String message) {

@@ -1,6 +1,7 @@
 package com.nion.tasktracker.controller;
 
 import com.nion.tasktracker.dto.request.create.CreateTaskUserRequest;
+import com.nion.tasktracker.dto.request.update.UpdateTaskUserRequest;
 import com.nion.tasktracker.dto.response.TaskUserResponse;
 import com.nion.tasktracker.service.ITaskUserService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class UserController {
     //получение профиля(юзера)
     //отключение юзера
     @PostMapping("/users")
-    public ResponseEntity<TaskUserResponse> createUser(@RequestBody CreateTaskUserRequest user) throws ServiceNotFoundException {
+    public ResponseEntity<TaskUserResponse> createUser(@RequestBody CreateTaskUserRequest user) {
         var response = userService.createUser(user);
         log.info("created user from controller: {}", response);
         return new ResponseEntity<>(
@@ -31,16 +32,31 @@ public class UserController {
     }
 
     @GetMapping("/users/{userId}")
-    public ResponseEntity<TaskUserResponse> getUserProfile(@PathVariable long userId) throws ServiceNotFoundException {
+    public ResponseEntity<TaskUserResponse> getUserInfo(@PathVariable long userId) {
         var response = userService.getUserById(userId);
-        log.info("get user profile from controller: {}", response);
+        log.info("get user info from controller: {}", response);
         return new ResponseEntity<>(response, HttpStatus.FOUND);
     }
 
+    @PutMapping("/users/{userId}")
+    public ResponseEntity<TaskUserResponse> updateUser(@PathVariable long userId, @RequestBody UpdateTaskUserRequest updatedUser) {
+        var response = userService.updateUser(
+                userId,
+                updatedUser
+        );
+        log.info("updated user from controller: {}", response);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @DeleteMapping("/users/{userId}")
-    public ResponseEntity<?> disableUser(@PathVariable long userId) throws ServiceNotFoundException {
-        userService.disableUser(userId);
-        log.info("disable user from controller: {}", userId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<?> disableUser(@PathVariable long userId) {
+        var response = userService.disableUser(userId);
+        if(!response.active()){
+            log.info("disable user from controller: {}", response);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            log.info("not disable user from controller because in the date range {}", response.lastActivity());
+            return new ResponseEntity<>("user is active by date", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

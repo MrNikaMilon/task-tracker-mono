@@ -14,8 +14,5 @@ spring:
     enabled: true
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: update
-    generate-ddl: false
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect

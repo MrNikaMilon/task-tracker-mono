@@ -1,4 +1,4 @@
-package com.nion.tasktracker.exception;
+package com.nion.tasktracker.handler.exception;
 
 public class TaskUserNotFoundException extends RuntimeException {
     public TaskUserNotFoundException(String message) {

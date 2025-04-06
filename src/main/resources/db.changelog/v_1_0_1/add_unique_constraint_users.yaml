@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      author: nino
+      id: 1
+      changes:
+        - addUniqueConstraint:
+            columnNames: user_name, email
+            tableName: users
+            constraintName: unique_user_name_email

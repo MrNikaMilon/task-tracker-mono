@@ -15,13 +15,10 @@ import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class TaskService implements ITaskService {
 
     private final ITaskRepository taskRepository;
-
-    public TaskService(ITaskRepository taskRepository) {
-        this.taskRepository = taskRepository;
-    }
 
     @Override
     public TaskResponse createTask(CreateTaskRequest createTaskRequest) {
