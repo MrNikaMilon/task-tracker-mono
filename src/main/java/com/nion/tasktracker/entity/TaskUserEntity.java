@@ -12,6 +12,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name="users", uniqueConstraints = {
@@ -36,4 +37,6 @@ public class TaskUserEntity {
         private LocalDateTime updatedAt;
         @Column(name = "last_activity")
         private LocalDateTime lastActivity;
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "taskUserEntity")
+        private Set<TaskEntity> tasks;
 }
