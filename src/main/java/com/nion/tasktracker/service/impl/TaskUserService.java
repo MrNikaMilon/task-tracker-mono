@@ -5,22 +5,30 @@ import com.nion.tasktracker.dto.request.update.UpdateTaskUserRequest;
 import com.nion.tasktracker.dto.response.TaskUserResponse;
 import com.nion.tasktracker.entity.dictionary.UserRole;
 import com.nion.tasktracker.handler.exception.TaskNotFoundException;
+import com.nion.tasktracker.handler.exception.TaskUserNotFoundException;
 import com.nion.tasktracker.mapper.ITaskUserMapper;
 import com.nion.tasktracker.repository.ITaskUserRepository;
 import com.nion.tasktracker.service.ITaskUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class TaskUserService implements ITaskUserService {
 
     private final ITaskUserRepository taskUserRepository;
+
     private final ITaskUserMapper taskUserMapper;
+
+    public TaskUserService(ITaskUserRepository taskUserRepository,
+                           ITaskUserMapper taskUserMapper) {
+        this.taskUserRepository = taskUserRepository;
+        this.taskUserMapper = taskUserMapper;
+    }
 
     @Override
     public TaskUserResponse createUser(CreateTaskUserRequest createTaskUserRequest) {
@@ -40,7 +48,7 @@ public class TaskUserService implements ITaskUserService {
     @Override
     public TaskUserResponse updateUser(long userId, UpdateTaskUserRequest updateTaskUserRequest) {
         var foundUser = taskUserRepository.findById(userId)
-                .orElseThrow(() -> new TaskNotFoundException("not found user with id: %d".formatted(userId)));
+                .orElseThrow(() -> new TaskUserNotFoundException("not found user with id: %d".formatted(userId)));
         foundUser.setUserName(updateTaskUserRequest.userName());
         foundUser.setEmail(updateTaskUserRequest.email());
         foundUser.setUpdatedAt(LocalDateTime.now());
@@ -53,14 +61,14 @@ public class TaskUserService implements ITaskUserService {
     @Override
     public TaskUserResponse getUserById(long userId) {
         var foundEntity = taskUserRepository.findById(userId)
-                .orElseThrow(() -> new TaskNotFoundException("not found user with id: %d".formatted(userId)));
+                .orElseThrow(() -> new TaskUserNotFoundException("not found user with id: %d".formatted(userId)));
         return taskUserMapper.toResponse(foundEntity);
     }
 
     @Override
     public TaskUserResponse disableUser(long userId) {
         var foundUser = taskUserRepository.findById(userId)
-                .orElseThrow(() -> new TaskNotFoundException("not found user with id: %d".formatted(userId)));
+                .orElseThrow(() -> new TaskUserNotFoundException("not found user with id: %d".formatted(userId)));
         return taskUserMapper.toResponse(foundUser);
     }
 }

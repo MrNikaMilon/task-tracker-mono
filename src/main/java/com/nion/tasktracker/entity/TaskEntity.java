@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @Table(name="tasks")
 @EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor @NoArgsConstructor @Data
+@SuppressWarnings("all")
 public class TaskEntity {
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "task_id", nullable = false)
         private Long taskId;
@@ -33,6 +34,6 @@ public class TaskEntity {
         private LocalDateTime updatedAt;
         @LastModifiedDate @Column(name = "last_edited_at") @Temporal(TemporalType.TIMESTAMP)
         private LocalDateTime lastEditedAt;
-        @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+        @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id", nullable = false)
         private TaskUserEntity taskUserEntity;
 }
