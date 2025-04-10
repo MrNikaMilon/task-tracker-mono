@@ -30,8 +30,9 @@ The scheduler by **cron** expression goes to the database or method and pulls ou
 Stores different types of mailings and when new messages are received in the listened topics:
 * **NEW_REGISTRATION_NOTIFY**
 *	**EMAIL_SENDING_TASK**
+
 There are four types of mailings:
-- Registration for the first time
-- Uncompleted tasks
-- Completed tasks
-- General statistics
+* Registration for the first time
+* Uncompleted tasks
+* Completed tasks
+* General statistics
