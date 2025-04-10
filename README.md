@@ -3,7 +3,7 @@ This is an advanced task tracker on Spring Boot and Kafka that says it all!
 
 ## *Tech stack of project*
 In its inception: 
-* Java 21 Correto
+* Java 21 Corretto
 * Spring Boot 3+
 * PostgreSQL 16
 * Kafka *(sorry I forgot a normal version of Kafka))*
