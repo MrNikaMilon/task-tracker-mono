@@ -1,8 +1,31 @@
 ## *About project*
+This is an advanced task tracker on Spring Boot and Kafka that says it all!
 
 ## *Tech stack of project*
+In its inception: 
+* Java 21 Correto
+* Spring Boot 3+
+* PostgreSQL 16
+* Kafka *(sorry I forgot a normal version of Kafka))*
 
 ## *How to run from localhost?*
+At now you may do it's very simple:
+Clone repository in consoile:
+```
+gti clone https://github.com/MrNikaMilon/task-tracker-app
+```
+
+At firstly start a docker compose in project directory to start DB and another service:
+```
+docker compose up
+```
+
+Okay, you are wonderful! At now start our application:
+```
+./gradlew clean compile bootRun
+```
+
+And check our application on any endpoint which you can find out at: `http://localhost:*your ports*/swagger-ui/docs/index.html`
 
 ##  *Logic of work this project*
 ### Auth service(in core service)
