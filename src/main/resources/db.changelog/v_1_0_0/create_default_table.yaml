@@ -23,6 +23,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: password
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
                   name: role
                   type: varchar(10)
                   constraints:

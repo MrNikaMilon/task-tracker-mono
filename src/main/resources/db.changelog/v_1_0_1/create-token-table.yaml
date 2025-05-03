@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-tokens-table
+      author: your-name
+      changes:
+        - createTable:
+            tableName: tokens
+            columns:
+              - column:
+                  name: uuid
+                  type: UUID
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: access_token
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: refresh_token
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_expired
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_revoked
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: TIMESTAMP
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP
+              - column:
+                  name: user_id
+                  type: bigint
+
+        - addForeignKeyConstraint:
+            baseTableName: tokens
+            baseColumnNames: user_id
+            referencedTableName: users
+            referencedColumnNames: user_id
+            constraintName: fk_tokens_user
+
+        - createIndex:
+            indexName: idx_tokens_user_id
+            tableName: tokens
+            columns:
+              - column:
+                  name: user_id

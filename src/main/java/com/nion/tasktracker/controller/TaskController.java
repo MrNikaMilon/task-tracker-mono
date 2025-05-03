@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,13 +23,15 @@ public class TaskController {
 
     //создание задачи
     @PostMapping("/tasks")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<TaskResponse> createTask(@RequestBody CreateTaskRequest task) {
         var responseCreatedTask = taskService.createTask(task);
-        log.info("task created: {}", responseCreatedTask);
+        log.info("task created: {}", responseCreatedTask.id());
         return ResponseEntity.ok(responseCreatedTask);
     }
     //обновление задачи
     @PutMapping("/tasks/{taskId}")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<TaskResponse> updateTask(@RequestBody UpdateTaskRequest task, @PathVariable long taskId) {
         var responseUpdatedTask = taskService.updateTask(task, taskId);
         log.info("task updated: {}", responseUpdatedTask);
@@ -36,6 +39,7 @@ public class TaskController {
     }
     //удаление задачи
     @DeleteMapping("/tasks/{taskId}")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<TaskResponse> deleteTask(@PathVariable long taskId) {
         var deletedTask = taskService.deleteTask(taskId);
         log.info("task deleted: {}", deletedTask);
@@ -43,21 +47,23 @@ public class TaskController {
     }
     //получение задачи(по юзеру) + получение задач(по юзеру) + получение всех задач(по всем юзерам)
     @GetMapping("/tasks/{taskId}")
+    @PreAuthorize("hasAnyRole('USER_ROLE', 'ROLE_ADMIN')")
     public ResponseEntity<TaskResponse> getTaskById(@PathVariable long taskId) {
         var responseTaskById = taskService.getTaskById(taskId);
         log.info("task by id {}, found: {}", taskId, responseTaskById);
         return ResponseEntity.ok(responseTaskById);
     }
 
-    @GetMapping("tasks/users/{userId}")
+    @GetMapping("/tasks/users/{userId}")
+    @PreAuthorize("hasAnyRole('USER_ROLE', 'ROLE_ADMIN')")
     public ResponseEntity<List<TaskResponse>> getTaskByUser(@PathVariable long userId) {
         var responseTaskByUser = taskService.getTaskByUser(userId);
         log.info("task by user {}, found: {}", userId, responseTaskByUser);
         return ResponseEntity.ok(responseTaskByUser);
     }
 
-    @Deprecated
-    @GetMapping
+    @GetMapping(path = "/tasks/get_all")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<List<TaskResponse>> getAllTasks() {
         var allTasks = taskService.getAllTasks();
         log.info("all tasks found: {}", allTasks);

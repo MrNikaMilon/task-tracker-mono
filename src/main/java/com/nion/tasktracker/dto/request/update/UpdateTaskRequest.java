@@ -5,6 +5,7 @@ import com.nion.tasktracker.entity.dictionary.TaskType;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Builder
 public record UpdateTaskRequest(String name,
@@ -12,6 +13,5 @@ public record UpdateTaskRequest(String name,
                                 TaskType type,
                                 TaskStatus status,
                                 LocalDateTime createdAt,
-                                long userId) {
-}
+                                long userId) { }
 

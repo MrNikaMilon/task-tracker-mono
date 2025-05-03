@@ -9,5 +9,4 @@ public record CreateTaskRequest(String name,
                                 String description,
                                 TaskType type,
                                 TaskStatus status,
-                                long userId) {
-}
+                                long userId) { }

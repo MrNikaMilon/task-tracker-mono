@@ -13,9 +13,8 @@ public interface ITaskRepository extends JpaRepository<TaskEntity, Long> {
 
     @Query("""
     select t from TaskEntity as t
-        join fetch t.taskUserEntity as tu
-    where 1=1
-        and tu.userId = :user
+    inner join fetch TaskUserEntity as u on u.userId =  t.taskUserEntity.userId
+    where 1=1 and u.userId = :user
     """)
     List<TaskEntity> getTaskByUser(long user);
 }
