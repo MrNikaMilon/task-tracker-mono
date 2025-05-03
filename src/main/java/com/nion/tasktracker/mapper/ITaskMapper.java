@@ -2,16 +2,14 @@ package com.nion.tasktracker.mapper;
 
 import com.nion.tasktracker.dto.request.create.CreateTaskRequest;
 import com.nion.tasktracker.dto.request.update.UpdateTaskRequest;
-import com.nion.tasktracker.dto.request.update.UpdateTaskUserRequest;
 import com.nion.tasktracker.dto.response.TaskResponse;
 import com.nion.tasktracker.entity.TaskEntity;
 import com.nion.tasktracker.entity.TaskUserEntity;
-import com.nion.tasktracker.handler.exception.TaskNotFoundException;
 import com.nion.tasktracker.handler.exception.TaskUserNotFoundException;
-import com.nion.tasktracker.repository.ITaskRepository;
 import com.nion.tasktracker.repository.ITaskUserRepository;
 import org.mapstruct.*;
-import org.springframework.scheduling.config.Task;
+
+import java.util.UUID;
 
 @Mapper(
         componentModel = MappingConstants.ComponentModel.SPRING
@@ -50,14 +48,14 @@ public interface ITaskMapper {
     TaskResponse toResponse(TaskEntity taskEntity);
 
     @Named("getEntityById")
-    default TaskUserEntity getEntityById(Long userId, @Context ITaskUserRepository taskUserRepository) {
+    default TaskUserEntity getEntityById(long userId, @Context ITaskUserRepository taskUserRepository) {
         return taskUserRepository.findById(userId)
                 .orElseThrow(() -> new TaskUserNotFoundException("not found user by id: %d".formatted(userId)));
     }
 
     @Named("getUserName")
     default String getUserName(TaskUserEntity taskUserEntity) {
-        return taskUserEntity.getUserName();
+        return taskUserEntity.getUsername();
     }
 
     @Named("getUserEmail")

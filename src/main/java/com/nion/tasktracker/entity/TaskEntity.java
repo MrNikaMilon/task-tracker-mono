@@ -20,20 +20,28 @@ import java.time.LocalDateTime;
 public class TaskEntity {
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "task_id", nullable = false)
         private Long taskId;
+
         @Column(name = "task_name", nullable = false, scale = 50)
         private String taskName;
+
         @Column(name = "task_description", scale = 250)
         private String taskDescription;
+
         @Enumerated(EnumType.STRING) @Column(scale = 50, nullable = false)
         private TaskType type;
+
         @Enumerated(EnumType.STRING) @Column(scale = 50, nullable = false)
         private TaskStatus status;
+
         @CreatedDate @Column(name = "created_at") @Temporal(TemporalType.TIMESTAMP)
         private LocalDateTime createdAt;
+
         @LastModifiedDate @Column(name = "updated_at") @Temporal(TemporalType.TIMESTAMP)
         private LocalDateTime updatedAt;
+
         @LastModifiedDate @Column(name = "last_edited_at") @Temporal(TemporalType.TIMESTAMP)
         private LocalDateTime lastEditedAt;
+
         @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id", nullable = false)
         private TaskUserEntity taskUserEntity;
 }

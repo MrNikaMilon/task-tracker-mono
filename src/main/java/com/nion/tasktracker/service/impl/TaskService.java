@@ -41,7 +41,7 @@ public class TaskService implements ITaskService {
         var savedEntity = taskRepository.save(
                 taskMapper.toEntity(createTaskRequest, taskUserRepository)
         );
-        log.info("created task: {}", savedEntity);
+        log.info("created task: {}", savedEntity.getTaskId());
         return taskMapper.toResponse(savedEntity);
     }
 

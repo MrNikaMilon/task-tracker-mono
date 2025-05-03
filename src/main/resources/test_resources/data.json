@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Write project report",
+    "description": "Complete the final report for the economics project",
+    "type": "WORK",
+    "status": "IN_PROGRESS",
+    "userId": 2
+  },
+  {
+    "name": "Buy groceries",
+    "description": "Milk, eggs, and vegetables for the week",
+    "type": "PERSONAL",
+    "status": "STARTED",
+    "userId": 2
+  },
+  {
+    "name": "Pay electricity bill",
+    "description": "Due today, avoid late fees",
+    "type": "URGENT",
+    "status": "COMPLETED",
+    "userId": 2
+  },
+  {
+    "name": "Clean the kitchen",
+    "description": "Daily routine cleaning task",
+    "type": "ROUTINE",
+    "status": "STARTED",
+    "userId": 2
+  },
+  {
+    "name": "Plan marketing campaign",
+    "description": "Strategize Q3 marketing goals",
+    "type": "PROJECT",
+    "status": "IN_PROGRESS",
+    "userId": 2
+  },
+  {
+    "name": "Doctor appointment",
+    "description": "Annual check-up at 3 PM",
+    "type": "REMINDER",
+    "status": "CANCELED",
+    "userId": 2
+  },
+  {
+    "name": "Watch a new movie",
+    "description": "Relax and enjoy the latest thriller on Netflix",
+    "type": "LEISURE",
+    "status": "COMPLETED",
+    "userId": 2
+  },
+  {
+    "name": "Read a book",
+    "description": "Start reading 'Atomic Habits'",
+    "type": "LEISURE",
+    "status": "STARTED",
+    "userId": 2
+  },
+  {
+    "name": "Backup files",
+    "description": "Upload documents to cloud storage",
+    "type": "MISC",
+    "status": "IN_PROGRESS",
+    "userId": 2
+  },
+  {
+    "name": "Birthday call",
+    "description": "Call John to wish him happy birthday",
+    "type": "REMINDER",
+    "status": "COMPLETED",
+    "userId": 2
+  }
+]
