@@ -1,6 +1,6 @@
 package com.nion.tasktracker.service;
 
-import com.nion.tasktracker.dto.request.AuthResponse;
+import com.nion.tasktracker.dto.response.AuthResponse;
 import com.nion.tasktracker.dto.request.LoginRequest;
 import com.nion.tasktracker.dto.request.create.RegistrationRequest;
 import com.nion.tasktracker.dto.response.RegistrationResponse;

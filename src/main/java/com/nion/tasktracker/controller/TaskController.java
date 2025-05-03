@@ -4,6 +4,8 @@ import com.nion.tasktracker.dto.request.create.CreateTaskRequest;
 import com.nion.tasktracker.dto.request.update.UpdateTaskRequest;
 import com.nion.tasktracker.dto.response.TaskResponse;
 import com.nion.tasktracker.service.impl.TaskService;
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,14 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/v1")
 @RequiredArgsConstructor
+@Tag(
+        name = "task controller",
+        description = "this is controller for managed task in our api, it support crud operation",
+        externalDocs = @ExternalDocumentation(
+                description = "link to readme projects",
+                url = "https://github.com/MrNikaMilon/task-tracker-app"
+        )
+)
 public class TaskController {
 
     private final TaskService taskService;
