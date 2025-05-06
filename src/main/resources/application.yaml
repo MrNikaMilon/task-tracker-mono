@@ -1,5 +1,8 @@
 server:
   port: 8090
+springdoc:
+  swagger-ui:
+    path: /task-tracker-swagger-ui
 spring:
   application:
     name: task_tracker

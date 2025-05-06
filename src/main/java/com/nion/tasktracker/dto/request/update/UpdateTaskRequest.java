@@ -2,16 +2,24 @@ package com.nion.tasktracker.dto.request.update;
 
 import com.nion.tasktracker.entity.dictionary.TaskStatus;
 import com.nion.tasktracker.entity.dictionary.TaskType;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Builder
-public record UpdateTaskRequest(String name,
-                                String description,
-                                TaskType type,
-                                TaskStatus status,
-                                LocalDateTime createdAt,
-                                long userId) { }
+@Schema(description = "request for update task by users")
+public record UpdateTaskRequest(
+        @Schema(description = "task names", example = "Write project report")
+        String name,
+        @Schema(description = "task description with info about tasks too", example = "Complete the final report for the economics project")
+        String description,
+        @Schema(description = "acceptable types of tasks", allowableValues = {"WORK", "PERSONAL", "URGENT", "ROUTINE", "PROJECT", "REMINDER", "LEISURE", "MISC"})
+        TaskType type,
+        @Schema(description = "acceptable status of tasks", allowableValues = {"STARTED", "IN_PROGRESS", "CANCELED", "COMPLETED"})
+        TaskStatus status,
+        @Schema(description = "date created task", example = "2025-01-01T00:00:00")
+        LocalDateTime createdAt,
+        @Schema(description = "id of the user who created the task and to whom it belongs", example = "2")
+        long userId) { }
 

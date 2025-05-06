@@ -1,10 +1,16 @@
 package com.nion.tasktracker.controller;
 
-import com.nion.tasktracker.dto.request.AuthResponse;
+import com.nion.tasktracker.dto.response.AuthResponse;
 import com.nion.tasktracker.dto.request.LoginRequest;
 import com.nion.tasktracker.dto.request.create.RegistrationRequest;
 import com.nion.tasktracker.service.impl.AuthService;
 import com.nion.tasktracker.service.impl.TaskUserService;
+import io.swagger.v3.oas.annotations.ExternalDocumentation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
@@ -16,6 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@Tag(
+        name = "auth controller",
+        description = "this is controller for authorization, login and refreshed available token users",
+        externalDocs = @ExternalDocumentation(
+                description = "link to readme projects",
+                url = "https://github.com/MrNikaMilon/task-tracker-app"
+        )
+)
 public class AuthController {
 
     private final AuthService authService;
@@ -26,26 +40,77 @@ public class AuthController {
         this.taskUserService = taskUserService;
     }
 
+    @Operation(
+            summary = "create and registration users in api",
+            description = "registration user and create in the system new entity"
+    )
     @PostMapping(path = "/registration")
-    public ResponseEntity<?> registration(@RequestBody RegistrationRequest registrationRequest) {
+    @ApiResponse(responseCode = "400", description = "we may return 400 error when name or user name already exists in our db")
+    public ResponseEntity<?> registration(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "registration by user data type",
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = RegistrationRequest.class)
+                    )
+            )
+            @RequestBody RegistrationRequest registrationRequest
+    ) {
         if(taskUserService.existsByUserName(registrationRequest.username())) {
             return ResponseEntity.badRequest().body("username already exists");
         }
         if(taskUserService.existsByEmail(registrationRequest.email())) {
             return ResponseEntity.badRequest().body("email already exists");
         }
-
         authService.registration(registrationRequest);
-
         return ResponseEntity.ok("successful registration");
     }
 
+    @Operation(
+            summary = "login users in api",
+            description = "method return user email and refresh and auth token for another system operations",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "return login info by user, we must save tokens in frontend",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = AuthResponse.class)
+                            )
+                    )
+            }
+    )
     @PostMapping(path = "/login")
-    public ResponseEntity<?> authentication(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<AuthResponse> authentication(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "login by user data type",
+                    required = true,
+                    content = @Content(
+                            mediaType = "application/json",
+                            schema = @Schema(implementation = LoginRequest.class)
+                    )
+            )
+            @RequestBody LoginRequest loginRequest
+    ) {
         var request = authService.authentication(loginRequest);
         return new ResponseEntity<>(request, HttpStatus.OK);
     }
 
+    @Operation(
+            summary = "refresh users token in api",
+            description = "we put an a refresh token and return new refresh token for users",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "return refresh info by user, we must save tokens in frontend",
+                            content = @Content(
+                                    mediaType = "application/json",
+                                    schema = @Schema(implementation = AuthResponse.class)
+                            )
+                    )
+            }
+    )
     @PostMapping("/refresh_token")
     public ResponseEntity<AuthResponse> refreshToken(HttpServletRequest request, HttpServletResponse response) {
         return authService.refresh(request, response);

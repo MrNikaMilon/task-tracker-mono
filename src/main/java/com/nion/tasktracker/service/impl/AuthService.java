@@ -1,6 +1,6 @@
 package com.nion.tasktracker.service.impl;
 
-import com.nion.tasktracker.dto.request.AuthResponse;
+import com.nion.tasktracker.dto.response.AuthResponse;
 import com.nion.tasktracker.dto.request.LoginRequest;
 import com.nion.tasktracker.dto.request.create.RegistrationRequest;
 import com.nion.tasktracker.dto.response.RegistrationResponse;
@@ -89,7 +89,7 @@ public class AuthService implements IAuthService {
         saveUserTokens(user, authToken, refreshToken);
 
         return AuthResponse.builder()
-                .email(user.getUsername())
+                .email(user.getEmail())
                 .authToken(authToken)
                 .refreshToken(refreshToken)
                 .build();
