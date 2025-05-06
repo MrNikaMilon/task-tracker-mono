@@ -1,11 +1,17 @@
 package com.nion.tasktracker.config;
 
+
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @OpenAPIDefinition(info = @Info(
         title = "Task Tracker API",
@@ -19,7 +25,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         servers = @Server(url = "http://localhost:8090")
 )
 @SecurityScheme(
-        name = "JWT",
+        name = "Bearer Authentication",
         type = SecuritySchemeType.HTTP,
         bearerFormat = "JWT",
         scheme = "bearer"
