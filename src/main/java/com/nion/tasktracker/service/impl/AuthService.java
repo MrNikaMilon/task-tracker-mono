@@ -89,7 +89,7 @@ public class AuthService implements IAuthService {
         saveUserTokens(user, authToken, refreshToken);
 
         return AuthResponse.builder()
-                .email(user.getUsername())
+                .email(user.getEmail())
                 .authToken(authToken)
                 .refreshToken(refreshToken)
                 .build();

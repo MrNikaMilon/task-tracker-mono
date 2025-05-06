@@ -148,7 +148,7 @@ public class TaskController {
     )
     @GetMapping("/tasks/{taskId}")
     @SecurityRequirement(name = "Bearer Authentication")
-    @PreAuthorize("hasAnyRole('USER_ROLE', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public TaskResponse getTaskById(
             @Parameter(description = "for return task we need id task", required = true)
             @PathVariable long taskId
@@ -174,7 +174,7 @@ public class TaskController {
     )
     @GetMapping("/tasks/users/{userId}")
     @SecurityRequirement(name = "bearerAuth")
-    @PreAuthorize("hasAnyRole('USER_ROLE', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     public ResponseEntity<List<TaskResponse>> getTaskByUser(
             @Parameter(description = "we send user id for return all task by user", required = true)
             @PathVariable long userId
