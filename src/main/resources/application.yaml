@@ -1,0 +1,24 @@
+server:
+  port: 8091
+spring:
+  application:
+    name: task-tracker-postman
+  mail:
+    host: smtp.yandex.ru
+    port: 465
+    username: ${YANDEX_EMAIL:NikaMilon@yandex.ru}
+    password: ${YANDEX_PASSWORD:otulvjrwavzljhfz}
+    from: NikaMilon@yandex.ru
+    protocol: smtps
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          ssl:
+            enable: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
