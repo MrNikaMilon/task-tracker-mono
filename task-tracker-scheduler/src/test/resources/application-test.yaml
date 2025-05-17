@@ -1,0 +1,3 @@
+external:
+  service:
+    url: localhost:8090/api/v1/statistic/get_statistic
