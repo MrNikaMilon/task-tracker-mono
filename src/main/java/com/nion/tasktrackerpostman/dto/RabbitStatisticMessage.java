@@ -5,8 +5,7 @@ import lombok.Builder;
 import java.time.LocalDateTime;
 
 @Builder
-public record RabbitStatisticMessage(
-        String email,
-        long uncompletedTask,
-        long completedTask,
-        long allTask) { }
+public record RabbitStatisticMessage(String email,
+                                     long uncompletedTask,
+                                     long completedTask,
+                                     long allTask) { }

@@ -5,7 +5,5 @@ import lombok.Builder;
 import java.time.LocalDateTime;
 
 @Builder
-public record RabbitRegistrationMessage(
-        String email,
-        LocalDateTime registrationTime
-) { }
+public record RabbitRegistrationMessage(String email,
+                                        LocalDateTime registrationTime) { }

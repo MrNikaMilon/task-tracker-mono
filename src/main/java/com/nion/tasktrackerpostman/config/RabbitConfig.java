@@ -21,7 +21,7 @@ import org.springframework.amqp.core.Queue;
 public class RabbitConfig {
 
     public static final String REG_QUEUE = "registration.email.queue";
-    public static final String STATISTIC_QUEUE = "statistic.user.queue";
+    public static final String STATISTIC_RESPONSE_QUEUE = "statistic.response.queue";
 
     private final RabbitProperties rabbitProperties;
 
@@ -32,7 +32,7 @@ public class RabbitConfig {
 
     @Bean
     public Queue statisticInfoQueue() {
-        return new Queue(STATISTIC_QUEUE);
+        return new Queue(STATISTIC_RESPONSE_QUEUE);
     }
 
     @Bean
