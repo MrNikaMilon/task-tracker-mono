@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db.changelog/v_1_0_0/create_default_table.yaml
+  - include:
+      file: db.changelog/v_1_0_0/create_indexed_table.yaml
+  - include:
+      file: db.changelog/v_1_0_1/add_sequence_to_users.yaml
+  - include:
+      file: db.changelog/v_1_0_1/add_unique_constraint_users.yaml
+  - include:
+      file: db.changelog/v_1_0_1/create-token-table.yaml

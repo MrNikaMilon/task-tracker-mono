@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-sequence-users
+      author: nino
+      changes:
+        - createSequence:
+            sequenceName: task_user_id_seq
+            startValue: 1
+            incrementBy: 1

@@ -1,0 +1,26 @@
+server:
+  port: 8090
+springdoc:
+  swagger-ui:
+    path: /task-tracker-swagger-ui
+spring:
+  application:
+    name: task_tracker
+    version: 0.0.1-SNAPSHOT
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5436/task_tracker_db}
+    username: ${DB_USER:admin}
+    password: ${DB_PASSWORD:admin}
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    change-log: classpath:/db.changelog/changelog-master.yaml
+    enabled: true
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+security:
+  jwt:
+    secret_key: 4eeab38d706831be4b36612ead768ef8182d1dd6f0e14e5dc934652e297fb16a
+    access_token_expiration: 36000000
+    refresh_token_expiration: 252000000

@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-indexes-users
+      author: nino
+      changes:
+        - createIndex:
+            indexName: idx_users_user_name
+            tableName: users
+            columns:
+              - column:
+                  name: user_name
+        - createIndex:
+            indexName: idx_users_email
+            tableName: users
+            columns:
+              - column:
+                  name: email
+  - changeSet:
+      id: create-indexes-tasks
+      author: nino
+      changes:
+        - createIndex:
+            indexName: idx_tasks_task_name
+            tableName: tasks
+            columns:
+              - column:
+                  name: task_name
