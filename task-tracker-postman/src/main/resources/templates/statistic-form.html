@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Монохромное письмо</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+        }
+        .content {
+            padding: 30px;
+            line-height: 1.6;
+        }
+        .footer {
+            background-color: #f0f0f0;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-radius: 0 0 15px 15px;
+        }
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #000000;
+            color: #ffffff !important;
+            text-decoration: none;
+            border-radius: 15px;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        .divider {
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+        <h1>Daily statistics</h1>
+        <p><span th:text="${subject}"></span></p>
+    </div>
+    <div class="content">
+        <p>Hello, <span th:text="${username}"></span>!</p>
+        <p>As of: <span th:text="${date}"></span></p>
+        <p>You have a <span th:text="${countTask}"></span> task with status <span th:text="${status}"></span></p>
+        <div class="divider"></div>
+        <p>Thank you for your use!</p>
+        <a href="https://github.com/MrNikaMilon/task-tracker-app" class="button">Follow on GitHub</a>
+    </div>
+    <div class="footer">
+        <p>© 2025 Task Tracker App</p>
+        <p><a href="#" style="color: #666;">by NikaMilon</a></p>
+    </div>
+</div>
+</body>
+</html>
