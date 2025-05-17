@@ -1,3 +1,9 @@
+<div align="center">
+  <br>
+  <img src="logo-task-tracker.svg" alt="">
+  <h1>task tracker</h1>
+</div>
+
 ## ❓ *About project*
 This is an advanced task tracker on Spring Boot and Kafka that says it all!
 
