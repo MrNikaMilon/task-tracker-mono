@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: task-tracker-scheduler
+  datasource:
+    url: jdbc:h2:mem:user_statistic_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    driver-class-name: org.h2.Driver
+    username: admin
+    password: admin
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: /
+  jpa:
+    hibernate:
+      ddl-auto: update
+external:
+  service:
+    url: http://localhost:8090/api/v1/statistic/get_statistic
