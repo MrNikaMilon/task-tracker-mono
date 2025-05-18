@@ -1,6 +1,6 @@
 <div align="center">
   <br>
-  <img src="task-tracker-logo.svg" alt="", width="120">
+  <img src="tracker-logo.svg" alt="", width="120">
   <h1>task tracker</h1>
 </div>
 
