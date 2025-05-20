@@ -12,7 +12,7 @@ In its inception:
 * Java 21 Corretto
 * Spring Boot 3+
 * PostgreSQL 16
-* Kafka *(sorry I forgot a normal version of Kafka)* 😅
+* RabbitMQ *(sorry I don't love Kafka in small project)* 😅
 
 ## 🤓 *How to run from localhost?*
 At now you may do it's very simple:
